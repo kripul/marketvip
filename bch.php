@@ -156,6 +156,10 @@
     <td id="rerataBuy">0</td>
   </tr>
 </table>
+
+<br><br>
+<p>Code with <i class="empty heart icon"></i> by <a href="https://web.facebook.com/Ipoel.kripul">Kripul</a></p>
+<br><br>
 </center>
 
   </div> <!-- end ui main text -->
