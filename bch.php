@@ -57,8 +57,8 @@
   <div class="ui main container">
     <div class="ui secondary  menu">
       <a href="/" class="item">BTC</a>
-      <a href="bch.html" class="item active">BCH</a>
-      <a href="eth.html" class="item">ETH</a>
+      <a href="bch.php" class="item active">BCH</a>
+      <a href="eth.php" class="item">ETH</a>
       <a href="#" class="item">ETC</a>
       <a href="#" class="item">LTC</a>
       <a href="#" class="item">WAVES</a>
@@ -380,7 +380,7 @@ function convertToRupiah(angka)
   var rupiah = '';    
   var angkarev = angka.toString().split('').reverse().join('');
   for(var i = 0; i < angkarev.length; i++) if(i%3 == 0) rupiah += angkarev.substr(i,3)+'.';
-  return rupiah.split('',rupiah.length-1).reverse().join('');
+  return rupiah.split('Rp. ',rupiah.length-1).reverse().join('');
 }
 
 $(document).ready(function () {
