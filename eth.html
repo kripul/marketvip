@@ -205,6 +205,51 @@
           <td id="smv11">0</td>
           <td id="smt11">0</td>
         </tr>
+        <tr>
+          <td id="smh12">0</td>
+          <td id="smv12">0</td>
+          <td id="smt12">0</td>
+        </tr>
+        <tr>
+          <td id="smh13">0</td>
+          <td id="smv13">0</td>
+          <td id="smt13">0</td>
+        </tr>
+        <tr>
+          <td id="smh14">0</td>
+          <td id="smv14">0</td>
+          <td id="smt14">0</td>
+        </tr>
+        <tr>
+          <td id="smh15">0</td>
+          <td id="smv15">0</td>
+          <td id="smt15">0</td>
+        </tr>
+        <tr>
+          <td id="smh16">0</td>
+          <td id="smv16">0</td>
+          <td id="smt16">0</td>
+        </tr>
+        <tr>
+          <td id="smh17">0</td>
+          <td id="smv17">0</td>
+          <td id="smt17">0</td>
+        </tr>
+        <tr>
+          <td id="smh18">0</td>
+          <td id="smv18">0</td>
+          <td id="smt18">0</td>
+        </tr>
+        <tr>
+          <td id="smh19">0</td>
+          <td id="smv19">0</td>
+          <td id="smt19">0</td>
+        </tr>
+        <tr>
+          <td id="smh20">0</td>
+          <td id="smv20">0</td>
+          <td id="smt20">0</td>
+        </tr>
     </table>
   </div>
   <div class="eight wide column">
@@ -277,6 +322,51 @@
           <td id="bmv11">0</td>
           <td id="bmt11">0</td>
         </tr>
+        <tr>
+          <td id="bmh12">0</td>
+          <td id="bmv12">0</td>
+          <td id="bmt12">0</td>
+        </tr>
+        <tr>
+          <td id="bmh13">0</td>
+          <td id="bmv13">0</td>
+          <td id="bmt13">0</td>
+        </tr>
+        <tr>
+          <td id="bmh14">0</td>
+          <td id="bmv14">0</td>
+          <td id="bmt14">0</td>
+        </tr>
+        <tr>
+          <td id="bmh15">0</td>
+          <td id="bmv15">0</td>
+          <td id="bmt15">0</td>
+        </tr>
+        <tr>
+          <td id="bmh16">0</td>
+          <td id="bmv16">0</td>
+          <td id="bmt16">0</td>
+        </tr>
+        <tr>
+          <td id="bmh17">0</td>
+          <td id="bmv17">0</td>
+          <td id="bmt17">0</td>
+        </tr>
+        <tr>
+          <td id="bmh18">0</td>
+          <td id="bmv18">0</td>
+          <td id="bmt18">0</td>
+        </tr>
+        <tr>
+          <td id="bmh19">0</td>
+          <td id="bmv19">0</td>
+          <td id="bmt19">0</td>
+        </tr>
+        <tr>
+          <td id="bmh20">0</td>
+          <td id="bmv20">0</td>
+          <td id="bmt20">0</td>
+        </tr>
     </table>
   </div>
 </div>
@@ -333,7 +423,7 @@ $(document).ready(function () {
   function depth1(){
     $.getJSON('https://vip.bitcoin.co.id/api/eth_idr/depth', function(data){
       $.each(data.buy, function(i,val){
-        if(i > 11){
+        if(i > 20){
           return false;
         }
         document.getElementById('bmh' + i).innerHTML = convertToRupiah(val[0]);
@@ -347,7 +437,7 @@ $(document).ready(function () {
   function depth2(){
     $.getJSON('https://vip.bitcoin.co.id/api/eth_idr/depth', function(data){
       $.each(data.sell, function(i,val){
-        if(i > 11){
+        if(i > 20){
           return false;
         }
         document.getElementById('smh' + i).innerHTML = convertToRupiah(val[0]);
