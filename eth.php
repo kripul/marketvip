@@ -72,8 +72,8 @@
       <a href="/" class="item">
         BTC
       </a>
-      <a href="eth.php" class="item">
-        eth
+      <a href="bch.php" class="item">
+        BCH
       </a>
       <a href="eth.php" class="active item">
         ETH
