@@ -69,15 +69,15 @@
   <div class="ui main text container">
     
     <div class="ui secondary  menu">
-      <a href="/" class="active item">
-        BTC
-      </a>
-      <a href="bch.php" class="item">
-        BCH
-      </a>
-      <a href="eth.php" class="item">
-        ETH
-      </a>
+      <a href="/" class="active item">BTC</a>
+      <a href="bch.html" class="item">BCH</a>
+      <a href="eth.html" class="item">ETH</a>
+       <a href="#" class="item">ETC</a>
+      <a href="#" class="item">LTC</a>
+      <a href="#" class="item">WAVES</a>
+      <a href="#" class="item">XLM</a>
+      <a href="#" class="item">XRP</a>
+      <a href="#" class="item">XZC</a>
     </div>
 
 
