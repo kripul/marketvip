@@ -175,7 +175,7 @@ function convertToRupiah(angka)
 
 $(document).ready(function () {
   function volume(){
-  $.getJSON('funceth.php', function(data) {
+  $.getJSON('funcEth.php', function(data) {
       document.getElementById('totalSell').innerHTML = data.totalSell;
       document.getElementById('totalBuy').innerHTML = data.totalBuy;
       document.getElementById('totalVIP').innerHTML = data.totalVIP;
