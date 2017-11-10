@@ -100,12 +100,12 @@
 <table class="ui celled padded table">
   <thead>
   <tr>
-    <th width="20%">Market</th>
-    <th width="20%">Harga Terkini</th>
-    <th width="20%">Sell terkini</th>
-    <th width="20%">Buy Terkini</th>
-    <th width="20%">Sell Tertinggi Today</th>
-    <th width="20%">Buy Terendah Today</th>
+    <th width="16%">Market</th>
+    <th width="16%">Harga Terkini</th>
+    <th width="16%">Sell terkini</th>
+    <th width="16%">Buy Terkini</th>
+    <th width="16%">Sell Tertinggi Today</th>
+    <th width="16%">Buy Terendah Today</th>
   </tr>
 </thead>
   <tr>
