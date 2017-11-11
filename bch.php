@@ -22,6 +22,7 @@
   body {
     padding: 1em;
     background-color: #FFFFFF;
+    /*font-family: Helvetica Neue;*/
     #font-size: 110%;
   }
   .ui.menu .item img.logo {
@@ -56,9 +57,9 @@
 
   <div class="ui main container">
     <div class="ui secondary  menu">
-      <a href="/" class="item">BTC</a>
-      <a href="bch.php" class="item active">BCH</a>
-      <a href="eth.php" class="item">ETH</a>
+      <a href="/" class="item" id="priceLastmenubtc">BTC</a>
+      <a href="bch.php" class="item active" id="priceLastmenubch">BCH</a>
+      <a href="eth.php" class="item" id="priceLastmenueth">ETH</a>
       <a href="#" class="item">ETC</a>
       <a href="#" class="item">LTC</a>
       <a href="#" class="item">WAVES</a>
@@ -406,14 +407,21 @@ $(document).ready(function () {
     function price(){
   $.getJSON('https://vip.bitcoin.co.id/api/bch_idr/ticker', function(data) {
       document.getElementById('priceLast').innerHTML = convertToRupiah(data.ticker.last);
+      document.getElementById('priceLastmenubch').innerHTML = "BCH <br/>" + convertToRupiah(data.ticker.last);
       document.getElementById('priceLashBuy').innerHTML = convertToRupiah(data.ticker.buy);
       document.getElementById('priceLashSell').innerHTML = convertToRupiah(data.ticker.sell);
       document.getElementById('priceTodayHigh').innerHTML = convertToRupiah(data.ticker.high);
       document.getElementById('priceTodayLow').innerHTML = convertToRupiah(data.ticker.low);
       document.title = convertToRupiah(data.ticker.last);
-
-
     });
+
+  $.getJSON('https://vip.bitcoin.co.id/api/eth_idr/ticker', function(data){
+    document.getElementById('priceLastmenueth').innerHTML = "ETH <br/>" + convertToRupiah(data.ticker.last);
+  });
+  $.getJSON('https://vip.bitcoin.co.id/api/btc_idr/ticker', function(data){
+    document.getElementById('priceLastmenubtc').innerHTML = "BTC <br/>" + convertToRupiah(data.ticker.last);
+  });
+
 }
 
   function depth1(){
