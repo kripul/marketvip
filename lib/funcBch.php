@@ -22,6 +22,7 @@ $bchPoloniexBid = floor($poloniex['BTC_BCH']['highestBid']*$btcVIP);
 $bchPoloniexAsk = floor($poloniex['BTC_BCH']['lowestAsk']*$btcVIP);
 
 $totalBCH = $dataTicker2['ticker']['vol_bch'];
+$totalBCHrp = floor($dataTicker2['ticker']['vol_bch']*$dataTicker2['ticker']['last']);
 
 for ($i=0; $i < $limit; $i++){
 	$buy = $dataDepth2['buy'][$i];
@@ -35,7 +36,7 @@ for ($i=0; $i < $limit; $i++){
 	$rerataSell = floor($totalsellRP/150);
 }
 
-$array = array('rerataSell' => $rerataSell, 'totalSell' => $totalsell, 'rerataBuy' => $rerataBuy, 'totalBuy' => $totalbuy, 'totalVIP' => $totalBCH, 'bchBittrex' => $bchBittrex, 'bchBittrexBid' => $bchBittrexBid, 'bchBittrexAsk' => $bchBittrexAsk, 'bchPoloniex' => $bchPoloniex, 'bchPoloniexBid' => $bchPoloniexBid, 'bchPoloniexAsk' => $bchBittrexAsk);
+$array = array('totalSell' => floor($totalsell),'totalBuy' => floor($totalbuy), 'totalVIP' => floor($totalBCH), 'totalVIPrp' => $totalBCHrp, 'bchBittrex' => $bchBittrex, 'bchBittrexBid' => $bchBittrexBid, 'bchBittrexAsk' => $bchBittrexAsk, 'bchPoloniex' => $bchPoloniex, 'bchPoloniexBid' => $bchPoloniexBid, 'bchPoloniexAsk' => $bchBittrexAsk);
 
 $json = json_encode($array);
 echo $json;

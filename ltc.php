@@ -53,10 +53,10 @@
   <div class="ui main container">
     <div class="ui secondary  menu">
       <a href="/" class="item" id="priceLastmenubtc">BTC</a>
-      <a href="bch.php" class="item active" id="priceLastmenubch">BCH</a>
+      <a href="bch.php" class="item" id="priceLastmenubch">BCH</a>
       <a href="eth.php" class="item" id="priceLastmenueth">ETH</a>
       <a href="etc.php" class="item" id="priceLastmenuetc">ETC</a>
-      <a href="ltc.php" class="item" id="priceLastmenultc">LTC</a>
+      <a href="ltc.php" class="item active" id="priceLastmenultc">LTC</a>
       <a href="waves.php" class="item" id="priceLastmenuwaves">WAVES</a>
       <a href="xlm.php" class="item" id="priceLastmenuxlm">XLM</a>
       <a href="xrp.php" class="item" id="priceLastmenuxrp">XRP</a>
@@ -65,7 +65,7 @@
 
 
 <center>
-  <h3>Volume BCH</h3>
+  <h3>Volume LTC</h3>
 <table class="ui celled padded table">
   <thead>
   <tr>
@@ -87,7 +87,7 @@
 </table>
 <br>
 
-<h3>Price BCH</h3>
+<h3>Price LTC</h3>
 <table class="ui celled padded table">
   <thead>
   <tr>
@@ -371,7 +371,7 @@
   </div> <!-- end ui main text -->
 
 <script>
-
+  
 function convertToRupiah(angka)
 {
   var rupiah = '';    
@@ -398,26 +398,26 @@ $(document).ready(function () {
     })(); 
 
     $.getJSON('https://poloniex.com/public?command=returnTicker', function(data){
-      document.getElementById('PoloniexLast').innerHTML = convertToRupiah(Math.floor(data.BTC_BCH.last*btcPrice));
-      document.getElementById('PoloniexBid').innerHTML = convertToRupiah(Math.floor(data.BTC_BCH.highestBid*btcPrice));
-      document.getElementById('PoloniexAsk').innerHTML = convertToRupiah(Math.floor(data.BTC_BCH.lowestAsk*btcPrice));
+      document.getElementById('PoloniexLast').innerHTML = convertToRupiah(Math.floor(data.BTC_LTC.last*btcPrice));
+      document.getElementById('PoloniexBid').innerHTML = convertToRupiah(Math.floor(data.BTC_LTC.highestBid*btcPrice));
+      document.getElementById('PoloniexAsk').innerHTML = convertToRupiah(Math.floor(data.BTC_LTC.lowestAsk*btcPrice));
     });
 
-    $.getJSON('https://bittrex.com/api/v1.1/public/getticker?market=btc-bcc', function(data){
+    $.getJSON('https://bittrex.com/api/v1.1/public/getticker?market=btc-ltc', function(data){
       document.getElementById('BittrexLast').innerHTML = convertToRupiah(Math.floor(data.result.Last*btcPrice));
       document.getElementById('BittrexBid').innerHTML = convertToRupiah(Math.floor(data.result.Bid*btcPrice));
       document.getElementById('BittrexAsk').innerHTML = convertToRupiah(Math.floor(data.result.Ask*btcPrice));
     });
 
-    $.getJSON('https://vip.bitcoin.co.id/api/bch_idr/ticker', function(data) {
+    $.getJSON('https://vip.bitcoin.co.id/api/ltc_idr/ticker', function(data) {
       document.getElementById('priceLast').innerHTML = convertToRupiah(data.ticker.last);
       document.getElementById('priceLashBuy').innerHTML = convertToRupiah(data.ticker.buy);
       document.getElementById('priceLashSell').innerHTML = convertToRupiah(data.ticker.sell);
       document.getElementById('priceTodayHigh').innerHTML = convertToRupiah(data.ticker.high);
       document.getElementById('priceTodayLow').innerHTML = convertToRupiah(data.ticker.low);
-      document.getElementById('totalVIP').innerHTML = Math.floor(data.ticker.vol_bch);
-      document.getElementById('totalVIPrp').innerHTML = convertToRupiah(Math.floor(data.ticker.vol_bch)*data.ticker.low);
-      document.title = "BCH " + convertToRupiah(data.ticker.last);
+      document.getElementById('totalVIP').innerHTML = Math.floor(data.ticker.vol_ltc);
+      document.getElementById('totalVIPrp').innerHTML = convertToRupiah(Math.floor(data.ticker.vol_ltc)*data.ticker.low);
+      document.title = "LTC " + convertToRupiah(data.ticker.last);
     });
   }
 
@@ -425,7 +425,7 @@ $(document).ready(function () {
     var totalbuy = 0;
     var totalsell = 0;
 
-    $.getJSON('https://vip.bitcoin.co.id/api/bch_idr/depth', function(data){  
+    $.getJSON('https://vip.bitcoin.co.id/api/ltc_idr/depth', function(data){  
 
       for (var i = 0; i < data['buy'].length; i++) {
         totalbuy += parseFloat(data['buy'][i][1]);

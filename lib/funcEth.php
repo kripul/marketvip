@@ -32,8 +32,8 @@ for ($i=0; $i < $limit; $i++){
 }
 
 $totaleth = $dataTicker['ticker']['vol_eth'];
-
-$array = array('totalSell' => $totalsell,'totalBuy' => $totalbuy, 'totalVIP' => $totaleth, 'ethBittrex' => $ethBittrex, 'ethBittrexBid' => $ethBittrexBid, 'ethBittrexAsk' => $ethBittrexAsk, 'ethPoloniex' => $ethPoloniex, 'ethPoloniexBid' => $ethPoloniexBid, 'ethPoloniexAsk' => $ethBittrexAsk);
+$totalETHrp = floor($dataTicker2['ticker']['vol_eth']*$btcVIP);
+$array = array('totalSell' => $totalsell,'totalBuy' => $totalbuy, 'totalVIP' => $totaleth, 'totalVIPrp' => $totalETHrp, 'ethBittrex' => $ethBittrex, 'ethBittrexBid' => $ethBittrexBid, 'ethBittrexAsk' => $ethBittrexAsk, 'ethPoloniex' => $ethPoloniex, 'ethPoloniexBid' => $ethPoloniexBid, 'ethPoloniexAsk' => $ethBittrexAsk);
 
 $json = json_encode($array);
 echo $json;
