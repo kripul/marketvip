@@ -72,7 +72,7 @@
     <th width="20%">Total Sell</th>
     <th width="20%">Total Buy</th>
     <th width="20%">Selisih Sell - Buy</th>
-    <th width="20%">Total VIP</th>
+    <th width="20%">Total Koin di VIP</th>
     <th width="20%">Total dalam Rupiah</th>
   </tr>
   </thead>
@@ -397,16 +397,16 @@ $(document).ready(function () {
     return btcPrice;
     })(); 
 
-    $.getJSON('https://poloniex.com/public?command=returnTicker', function(data){
-      document.getElementById('PoloniexLast').innerHTML = convertToRupiah(Math.floor(data.BTC_WAVES.last*btcPrice));
-      document.getElementById('PoloniexBid').innerHTML = convertToRupiah(Math.floor(data.BTC_WAVES.highestBid*btcPrice));
-      document.getElementById('PoloniexAsk').innerHTML = convertToRupiah(Math.floor(data.BTC_WAVES.lowestAsk*btcPrice));
-    });
+    // $.getJSON('https://poloniex.com/public?command=returnTicker', function(data){
+    //   document.getElementById('PoloniexLast').innerHTML = convertToRupiah(Math.floor(data.BTC_WAVES.last*btcPrice));
+    //   document.getElementById('PoloniexBid').innerHTML = convertToRupiah(Math.floor(data.BTC_WAVES.highestBid*btcPrice));
+    //   document.getElementById('PoloniexAsk').innerHTML = convertToRupiah(Math.floor(data.BTC_WAVES.lowestAsk*btcPrice));
+    // });
 
-    $.getJSON('https://bittrex.com/api/v1.1/public/getticker?market=btc-waves', function(data){
-      document.getElementById('BittrexLast').innerHTML = convertToRupiah(Math.floor(data.result.Last*btcPrice));
-      document.getElementById('BittrexBid').innerHTML = convertToRupiah(Math.floor(data.result.Bid*btcPrice));
-      document.getElementById('BittrexAsk').innerHTML = convertToRupiah(Math.floor(data.result.Ask*btcPrice));
+    $.getJSON('libs/funcWaves.php', function(data){
+      document.getElementById('BittrexLast').innerHTML = convertToRupiah(Math.floor(data.Bittrex*btcPrice));
+      document.getElementById('BittrexBid').innerHTML = convertToRupiah(Math.floor(data.BittrexBid*btcPrice));
+      document.getElementById('BittrexAsk').innerHTML = convertToRupiah(Math.floor(data.BittrexAsk*btcPrice));
     });
 
     $.getJSON('https://vip.bitcoin.co.id/api/waves_idr/ticker', function(data) {

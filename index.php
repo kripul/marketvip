@@ -71,7 +71,7 @@
     <th width="20%">Total Sell</th>
     <th width="20%">Total Buy</th>
     <th width="20%">Selisih Sell - Buy</th>
-    <th width="20%">Total VIP</th>
+    <th width="20%">Total Koin di VIP</th>
     <th width="20%">Total dalam Rupiah</th>
   </tr>
   </thead>

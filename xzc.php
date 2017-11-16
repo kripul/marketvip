@@ -72,7 +72,7 @@
     <th width="20%">Total Sell</th>
     <th width="20%">Total Buy</th>
     <th width="20%">Selisih Sell - Buy</th>
-    <th width="20%">Total VIP</th>
+    <th width="20%">Total Koin di VIP</th>
     <th width="20%">Total dalam Rupiah</th>
   </tr>
   </thead>
@@ -397,16 +397,18 @@ $(document).ready(function () {
     return btcPrice;
     })(); 
 
+
     $.getJSON('https://poloniex.com/public?command=returnTicker', function(data){
-      document.getElementById('PoloniexLast').innerHTML = convertToRupiah(Math.floor(data.BTC_XZC.last*btcPrice));
+      document.getElementById('Poloniex').innerHTML = convertToRupiah(Math.floor(data.BTC_XZC.last*btcPrice));
       document.getElementById('PoloniexBid').innerHTML = convertToRupiah(Math.floor(data.BTC_XZC.highestBid*btcPrice));
       document.getElementById('PoloniexAsk').innerHTML = convertToRupiah(Math.floor(data.BTC_XZC.lowestAsk*btcPrice));
     });
 
-    $.getJSON('https://bittrex.com/api/v1.1/public/getticker?market=btc-xzc', function(data){
-      document.getElementById('BittrexLast').innerHTML = convertToRupiah(Math.floor(data.result.Last*btcPrice));
-      document.getElementById('BittrexBid').innerHTML = convertToRupiah(Math.floor(data.result.Bid*btcPrice));
-      document.getElementById('BittrexAsk').innerHTML = convertToRupiah(Math.floor(data.result.Ask*btcPrice));
+
+    $.getJSON('libs/funcXzc.php', function(data){
+      document.getElementById('BittrexLast').innerHTML = convertToRupiah(Math.floor(data.Bittrex*btcPrice));
+      document.getElementById('BittrexBid').innerHTML = convertToRupiah(Math.floor(data.BittrexBid*btcPrice));
+      document.getElementById('BittrexAsk').innerHTML = convertToRupiah(Math.floor(data.BittrexAsk*btcPrice));
     });
 
     $.getJSON('https://vip.bitcoin.co.id/api/xzc_idr/ticker', function(data) {

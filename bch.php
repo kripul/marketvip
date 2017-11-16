@@ -72,7 +72,7 @@
     <th width="20%">Total Sell</th>
     <th width="20%">Total Buy</th>
     <th width="20%">Selisih Sell - Buy</th>
-    <th width="20%">Total VIP</th>
+    <th width="20%">Total Koin di VIP</th>
     <th width="20%">Total dalam Rupiah</th>
   </tr>
   </thead>
@@ -403,10 +403,10 @@ $(document).ready(function () {
       document.getElementById('PoloniexAsk').innerHTML = convertToRupiah(Math.floor(data.BTC_BCH.lowestAsk*btcPrice));
     });
 
-    $.getJSON('https://bittrex.com/api/v1.1/public/getticker?market=btc-bcc', function(data){
-      document.getElementById('BittrexLast').innerHTML = convertToRupiah(Math.floor(data.result.Last*btcPrice));
-      document.getElementById('BittrexBid').innerHTML = convertToRupiah(Math.floor(data.result.Bid*btcPrice));
-      document.getElementById('BittrexAsk').innerHTML = convertToRupiah(Math.floor(data.result.Ask*btcPrice));
+    $.getJSON('libs/funcEtc.php', function(data){
+      document.getElementById('BittrexLast').innerHTML = convertToRupiah(Math.floor(data.Bittrex*btcPrice));
+      document.getElementById('BittrexBid').innerHTML = convertToRupiah(Math.floor(data.BittrexBid*btcPrice));
+      document.getElementById('BittrexAsk').innerHTML = convertToRupiah(Math.floor(data.BittrexAsk*btcPrice));
     });
 
     $.getJSON('https://vip.bitcoin.co.id/api/bch_idr/ticker', function(data) {
