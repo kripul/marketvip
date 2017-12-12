@@ -124,7 +124,54 @@
     <td id="">0</td>
   </tr>
 </table>
-<br>
+
+<h3>Aktivitas Market</h3>
+<table class="ui celled padded table">
+  <thead>
+    <th>Waktu</th>
+    <th>Jenis</th>
+    <th>Harga</th>
+    <th>Volume</th>
+    <th>IDR</th>
+  </thead>
+  <tr>
+    <td id="mw0">0</td>
+    <td id="mj0">0</td>
+    <td id="mh0">0</td>
+    <td id="mv0">0</td>
+    <td id="mp0">0</td>
+  </tr>
+  <tr>
+    <td id="mw1">0</td>
+    <td id="mj1">0</td>
+    <td id="mh1">0</td>
+    <td id="mv1">0</td>
+    <td id="mp1">0</td>
+  </tr>
+  <tr>
+    <td id="mw2">0</td>
+    <td id="mj2">0</td>
+    <td id="mh2">0</td>
+    <td id="mv2">0</td>
+    <td id="mp2">0</td>
+  </tr>
+  <tr>
+    <td id="mw3">0</td>
+    <td id="mj3">0</td>
+    <td id="mh3">0</td>
+    <td id="mv3">0</td>
+    <td id="mp3">0</td>
+  </tr>
+  <tr>
+    <td id="mw4">0</td>
+    <td id="mj4">0</td>
+    <td id="mh4">0</td>
+    <td id="mv4">0</td>
+    <td id="mp4">0</td>
+  </tr>
+</table>
+
+
 <h3>Market</h3>
 <div class="ui grid">
   <div class="eight wide column">
@@ -403,7 +450,7 @@ $(document).ready(function () {
       document.getElementById('PoloniexAsk').innerHTML = convertToRupiah(Math.floor(data.BTC_BCH.lowestAsk*btcPrice));
     });
 
-    $.getJSON('libs/funcEtc.php', function(data){
+    $.getJSON('libs/funcBch.php', function(data){
       document.getElementById('BittrexLast').innerHTML = convertToRupiah(Math.floor(data.Bittrex*btcPrice));
       document.getElementById('BittrexBid').innerHTML = convertToRupiah(Math.floor(data.BittrexBid*btcPrice));
       document.getElementById('BittrexAsk').innerHTML = convertToRupiah(Math.floor(data.BittrexAsk*btcPrice));
@@ -415,8 +462,8 @@ $(document).ready(function () {
       document.getElementById('priceLashSell').innerHTML = convertToRupiah(data.ticker.sell);
       document.getElementById('priceTodayHigh').innerHTML = convertToRupiah(data.ticker.high);
       document.getElementById('priceTodayLow').innerHTML = convertToRupiah(data.ticker.low);
-      document.getElementById('totalVIP').innerHTML = Math.floor(data.ticker.vol_bch);
-      document.getElementById('totalVIPrp').innerHTML = convertToRupiah(Math.floor(data.ticker.vol_bch)*data.ticker.low);
+      document.getElementById('totalVIP').innerHTML = Math.round(data.ticker.vol_bch);
+      document.getElementById('totalVIPrp').innerHTML = convertToRupiah(Math.round(data.ticker.vol_bch)*data.ticker.high);
       document.title = "BCH " + convertToRupiah(data.ticker.last);
     });
   }
@@ -425,6 +472,20 @@ $(document).ready(function () {
     var totalbuy = 0;
     var totalsell = 0;
 
+    $.getJSON('https://vip.bitcoin.co.id/api/bch_idr/trades', function(data){
+      $.each(data, function(i,val){
+        if(i > 4){
+          return false;
+        }
+
+          document.getElementById('mw' + i).innerHTML = new Date(val.date*1000).toLocaleString([], {hour: '2-digit', minute:'2-digit'});
+          document.getElementById('mj' + i).innerHTML = val.type;
+          document.getElementById('mh' + i).innerHTML = convertToRupiah(val.price);
+          document.getElementById('mv' + i).innerHTML = val.amount;
+          document.getElementById('mp' + i).innerHTML = convertToRupiah(Math.round(val.price*val.amount));
+        });
+      });
+
     $.getJSON('https://vip.bitcoin.co.id/api/bch_idr/depth', function(data){  
 
       for (var i = 0; i < data['buy'].length; i++) {
@@ -432,10 +493,10 @@ $(document).ready(function () {
         totalsell += parseFloat(data['sell'][i][1]);
       }
 
-      document.getElementById('totalBuy').innerHTML = Math.floor(totalbuy);
-      document.getElementById('totalSell').innerHTML = Math.floor(totalsell);
-      document.getElementById('totalBuy').innerHTML = Math.floor(totalbuy);
-      document.getElementById('selisih').innerHTML = Math.floor(totalsell-totalbuy);
+      document.getElementById('totalBuy').innerHTML = Math.round(totalbuy);
+      document.getElementById('totalSell').innerHTML = Math.round(totalsell);
+      document.getElementById('totalBuy').innerHTML = Math.round(totalbuy);
+      document.getElementById('selisih').innerHTML = Math.round(totalsell-totalbuy);
 
       $.each(data.buy, function(i,val){
         if(i > 20){

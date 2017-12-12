@@ -1,7 +1,7 @@
 <?php
 $header = "Content-Type: application/json; charset=utf-8";
 header($header);
-$data = json_decode(file_get_contents('https://bittrex.com/api/v1.1/public/getticker?market=btc-bcc'), true);
+$data = json_decode(file_get_contents('https://bittrex.com/api/v1.1/public/getticker?market=btc-xrp'), true);
 
 $Bittrex = $data['result']['Last'];
 $BittrexBid = $data['result']['Bid'];

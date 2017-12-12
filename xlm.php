@@ -125,6 +125,62 @@
   </tr>
 </table>
 <br>
+
+<h3>Aktivitas Market</h3>
+<table class="ui celled padded table">
+  <thead>
+    <th>Waktu</th>
+    <th>Jenis</th>
+    <th>Harga</th>
+    <th>Volume</th>
+    <th>IDR</th>
+  </thead>
+  <tr>
+    <td id="mw0">0</td>
+    <td id="mj0">0</td>
+    <td id="mh0">0</td>
+    <td id="mv0">0</td>
+    <td id="mp0">0</td>
+  </tr>
+  <tr>
+    <td id="mw1">0</td>
+    <td id="mj1">0</td>
+    <td id="mh1">0</td>
+    <td id="mv1">0</td>
+    <td id="mp1">0</td>
+  </tr>
+  <tr>
+    <td id="mw2">0</td>
+    <td id="mj2">0</td>
+    <td id="mh2">0</td>
+    <td id="mv2">0</td>
+    <td id="mp2">0</td>
+  </tr>
+  <tr>
+    <td id="mw3">0</td>
+    <td id="mj3">0</td>
+    <td id="mh3">0</td>
+    <td id="mv3">0</td>
+    <td id="mp3">0</td>
+  </tr>
+  <tr>
+    <td id="mw4">0</td>
+    <td id="mj4">0</td>
+    <td id="mh4">0</td>
+    <td id="mv4">0</td>
+    <td id="mp4">0</td>
+  </tr>
+  <tr>
+    <td id="mw5">0</td>
+    <td id="mj5">0</td>
+    <td id="mh5">0</td>
+    <td id="mv5">0</td>
+    <td id="mp5">0</td>
+  </tr>
+</table>
+
+
+
 <h3>Market</h3>
 <div class="ui grid">
   <div class="eight wide column">
@@ -380,6 +436,10 @@ function convertToRupiah(angka)
   return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
 }
 
+function time(s) {
+  return new Date(s * 1e3).toISOString().slice(-13, -5);
+}
+
 $(document).ready(function () {
 
   function price(){
@@ -422,8 +482,23 @@ $(document).ready(function () {
   }
 
   function depth(){
+
     var totalbuy = 0;
     var totalsell = 0;
+
+    $.getJSON('https://vip.bitcoin.co.id/api/str_idr/trades', function(data){
+      $.each(data, function(i,val){
+        if(i > 5){
+          return false;
+        }
+
+          document.getElementById('mw' + i).innerHTML = new Date(val.date*1000).toLocaleString([], {hour: '2-digit', minute:'2-digit'});
+          document.getElementById('mj' + i).innerHTML = val.type;
+          document.getElementById('mh' + i).innerHTML = convertToRupiah(val.price);
+          document.getElementById('mv' + i).innerHTML = val.amount;
+          document.getElementById('mp' + i).innerHTML = convertToRupiah(val.price*Math.floor(val.amount));
+        });
+      });
 
     $.getJSON('https://vip.bitcoin.co.id/api/str_idr/depth', function(data){  
 
