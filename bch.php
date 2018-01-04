@@ -112,7 +112,7 @@
     <td id="priceTodayLow">0</td>
   </tr>
     <tr>
-    <td>Bitrex</td>
+    <td>Bittrex</td>
     <td id="BittrexLast">0</td>
     <td id="BittrexAsk">0</td>
     <td id="BittrexBid">0</td>
@@ -425,6 +425,7 @@
 
 <br><br>
 <p>Code with <i class="empty heart icon"></i> by <a href="https://web.facebook.com/Ipoel.kripul">Kripul</a></p>
+<p><i class=" empty fork icon"></i>Fork this project on <a href="https://github.com/kripul/marketvip">Github</a></p>
 <br><br>
 </center>
 

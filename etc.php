@@ -425,6 +425,7 @@
 
 <br><br>
 <p>Code with <i class="empty heart icon"></i> by <a href="https://web.facebook.com/Ipoel.kripul">Kripul</a></p>
+<p><i class=" empty fork icon"></i>Fork this project on <a href="https://github.com/kripul/marketvip">Github</a></p>
 <br><br>
 </center>
 
