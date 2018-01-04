@@ -57,10 +57,10 @@
       <a href="bch.php" class="item" id="priceLastmenubch">BCH</a>
       <a href="btg.php" class="item" id="priceLastmenubch">BTG</a>
       <a href="eth.php" class="item" id="priceLastmenueth">ETH</a>
-      <a href="etc.php" class="item active" id="priceLastmenuetc">ETC</a>
+      <a href="etc.php" class="item" id="priceLastmenuetc">ETC</a>
       <a href="ignis.php" class="item" id="priceLastmenubch">IGNIS</a>
       <a href="ltc.php" class="item" id="priceLastmenultc">LTC</a>
-      <a href="nxt.php" class="item" id="priceLastmenultc">NXT</a>
+      <a href="nxt.php" class="item active" id="priceLastmenultc">NXT</a>
       <a href="waves.php" class="item" id="priceLastmenuwaves">WAVES</a>
       <a href="xlm.php" class="item" id="priceLastmenuxlm">XLM</a>
       <a href="xrp.php" class="item" id="priceLastmenuxrp">XRP</a>
@@ -69,7 +69,7 @@
 
 
 <center>
-  <h3>Volume ETC</h3>
+  <h3>Volume NXT</h3>
 <table class="ui celled padded table compact striped">
   <thead>
   <tr>
@@ -91,7 +91,7 @@
 </table>
 <br>
 
-<h3>Price ETC</h3>
+<h3>Price NXT</h3>
 <table class="ui celled padded table compact striped">
   <thead>
   <tr>
@@ -124,14 +124,6 @@
     <td id="PoloniexLast">0</td>
     <td id="PoloniexAsk">0</td>
     <td id="PoloniexBid">0</td>
-    <td id="">0</td>
-    <td id="">0</td>
-  </tr>
-   <tr>
-    <td>HitBTC</td>
-    <td id="Hitbtc">0</td>
-    <td id="HitbtcAsk">0</td>
-    <td id="HitbtcBid">0</td>
     <td id="">0</td>
     <td id="">0</td>
   </tr>
@@ -184,7 +176,6 @@
   </tr>
 </table>
 <br>
-
 <h3>Market</h3>
 <div class="ui grid">
   <div class="eight wide column">
@@ -458,32 +449,25 @@ $(document).ready(function () {
     })(); 
 
     $.getJSON('https://poloniex.com/public?command=returnTicker', function(data){
-      document.getElementById('PoloniexLast').innerHTML = convertToRupiah(Math.floor(data.BTC_ETC.last*btcPrice));
-      document.getElementById('PoloniexBid').innerHTML = convertToRupiah(Math.floor(data.BTC_ETC.highestBid*btcPrice));
-      document.getElementById('PoloniexAsk').innerHTML = convertToRupiah(Math.floor(data.BTC_ETC.lowestAsk*btcPrice));
+      document.getElementById('PoloniexLast').innerHTML = convertToRupiah(Math.floor(data.BTC_NXT.last*btcPrice));
+      document.getElementById('PoloniexBid').innerHTML = convertToRupiah(Math.floor(data.BTC_NXT.highestBid*btcPrice));
+      document.getElementById('PoloniexAsk').innerHTML = convertToRupiah(Math.floor(data.BTC_NXT.lowestAsk*btcPrice));
     });
 
-    $.getJSON('libs/hitbtc.php?i=ETC', function(data){
-      document.getElementById('Hitbtc').innerHTML = convertToRupiah(Math.floor(data.hitbtc*btcPrice));
-      document.getElementById('HitbtcAsk').innerHTML = convertToRupiah(Math.floor(data.hitbtcask*btcPrice));
-      document.getElementById('HitbtcBid').innerHTML = convertToRupiah(Math.floor(data.hitbtcbid*btcPrice));
-    });
-
-    $.getJSON('libs/bittrex.php?i=etc', function(data){
+    $.getJSON('libs/bittrex.php?i=nxt', function(data){
       document.getElementById('BittrexLast').innerHTML = convertToRupiah(Math.floor(data.Bittrex*btcPrice));
       document.getElementById('BittrexBid').innerHTML = convertToRupiah(Math.floor(data.BittrexBid*btcPrice));
       document.getElementById('BittrexAsk').innerHTML = convertToRupiah(Math.floor(data.BittrexAsk*btcPrice));
     });
-
-    $.getJSON('https://vip.bitcoin.co.id/api/etc_idr/ticker', function(data) {
+    $.getJSON('https://vip.bitcoin.co.id/api/nxt_idr/ticker', function(data) {
       document.getElementById('priceLast').innerHTML = convertToRupiah(data.ticker.last);
       document.getElementById('priceLashBuy').innerHTML = convertToRupiah(data.ticker.buy);
       document.getElementById('priceLashSell').innerHTML = convertToRupiah(data.ticker.sell);
       document.getElementById('priceTodayHigh').innerHTML = convertToRupiah(data.ticker.high);
       document.getElementById('priceTodayLow').innerHTML = convertToRupiah(data.ticker.low);
-      document.getElementById('totalVIP').innerHTML = Math.floor(data.ticker.vol_etc);
-      document.getElementById('totalVIPrp').innerHTML = convertToRupiah(Math.floor(data.ticker.vol_etc)*data.ticker.low);
-      document.title = "ETC " + convertToRupiah(data.ticker.last);
+      document.getElementById('totalVIP').innerHTML = Math.floor(data.ticker.vol_nxt);
+      document.getElementById('totalVIPrp').innerHTML = convertToRupiah(Math.floor(data.ticker.vol_nxt)*data.ticker.low);
+      document.title = "NXT " + convertToRupiah(data.ticker.last);
     });
   }
 
@@ -491,7 +475,7 @@ $(document).ready(function () {
     var totalbuy = 0;
     var totalsell = 0;
 
-    $.getJSON('https://vip.bitcoin.co.id/api/etc_idr/trades', function(data){
+    $.getJSON('https://vip.bitcoin.co.id/api/nxt_idr/trades', function(data){
       $.each(data, function(i,val){
         if(i > 4){
           return false;
@@ -505,7 +489,8 @@ $(document).ready(function () {
         });
       });
 
-    $.getJSON('https://vip.bitcoin.co.id/api/etc_idr/depth', function(data){  
+
+    $.getJSON('https://vip.bitcoin.co.id/api/nxt_idr/depth', function(data){  
 
       for (var i = 0; i < data['buy'].length; i++) {
         totalbuy += parseFloat(data['buy'][i][1]);

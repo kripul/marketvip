@@ -52,11 +52,15 @@
 
   <div class="ui main container">
     <div class="ui secondary  menu">
-      <a href="/" class="item" id="priceLastmenubtc">BTC</a>
+      <a href="/" class="item" id="priceLastmenubtc">HOME</a>
+      <a href="btc.php" class="item" id="priceLastmenubtc">BTC</a>
       <a href="bch.php" class="item" id="priceLastmenubch">BCH</a>
+      <a href="btg.php" class="item" id="priceLastmenubch">BTG</a>
       <a href="eth.php" class="item" id="priceLastmenueth">ETH</a>
       <a href="etc.php" class="item" id="priceLastmenuetc">ETC</a>
+      <a href="ignis.php" class="item" id="priceLastmenubch">IGNIS</a>
       <a href="ltc.php" class="item active" id="priceLastmenultc">LTC</a>
+      <a href="nxt.php" class="item" id="priceLastmenultc">NXT</a>
       <a href="waves.php" class="item" id="priceLastmenuwaves">WAVES</a>
       <a href="xlm.php" class="item" id="priceLastmenuxlm">XLM</a>
       <a href="xrp.php" class="item" id="priceLastmenuxrp">XRP</a>
@@ -66,7 +70,7 @@
 
 <center>
   <h3>Volume LTC</h3>
-<table class="ui celled padded table">
+<table class="ui celled padded table compact striped">
   <thead>
   <tr>
     <th width="20%">Total Sell</th>
@@ -88,7 +92,7 @@
 <br>
 
 <h3>Price LTC</h3>
-<table class="ui celled padded table">
+<table class="ui celled padded table compact striped">
   <thead>
   <tr>
     <th width="16%">Market</th>
@@ -108,7 +112,7 @@
     <td id="priceTodayLow">0</td>
   </tr>
     <tr>
-    <td>Bitrex</td>
+    <td>Bittrex</td>
     <td id="BittrexLast">0</td>
     <td id="BittrexAsk">0</td>
     <td id="BittrexBid">0</td>
@@ -123,11 +127,67 @@
     <td id="">0</td>
     <td id="">0</td>
   </tr>
+   <tr>
+    <td>HitBTC</td>
+    <td id="Hitbtc">0</td>
+    <td id="HitbtcAsk">0</td>
+    <td id="HitbtcBid">0</td>
+    <td id="">0</td>
+    <td id="">0</td>
+  </tr>
 </table>
 <br>
+
+<h3>Aktivitas Market</h3>
+<table class="ui celled padded table compact striped">
+  <thead>
+    <th width="20%">Waktu</th>
+    <th width="20%">Jenis</th>
+    <th width="20%">Harga</th>
+    <th width="20%">Volume</th>
+    <th width="20%">IDR</th>
+  </thead>
+  <tr>
+    <td id="mw0">0</td>
+    <td id="mj0">0</td>
+    <td id="mh0">0</td>
+    <td id="mv0">0</td>
+    <td id="mp0">0</td>
+  </tr>
+  <tr>
+    <td id="mw1">0</td>
+    <td id="mj1">0</td>
+    <td id="mh1">0</td>
+    <td id="mv1">0</td>
+    <td id="mp1">0</td>
+  </tr>
+  <tr>
+    <td id="mw2">0</td>
+    <td id="mj2">0</td>
+    <td id="mh2">0</td>
+    <td id="mv2">0</td>
+    <td id="mp2">0</td>
+  </tr>
+  <tr>
+    <td id="mw3">0</td>
+    <td id="mj3">0</td>
+    <td id="mh3">0</td>
+    <td id="mv3">0</td>
+    <td id="mp3">0</td>
+  </tr>
+  <tr>
+    <td id="mw4">0</td>
+    <td id="mj4">0</td>
+    <td id="mh4">0</td>
+    <td id="mv4">0</td>
+    <td id="mp4">0</td>
+  </tr>
+</table>
+<br>
+
 <h3>Market</h3>
 <div class="ui grid">
-  <div class="eight wide column">
+  <div class="eight wide column compact striped">
     <h5>Market Jual</h5>
     <table class="ui celled striped table">
       <thead>
@@ -246,7 +306,7 @@
   </div>
   <div class="eight wide column">
     <h5>Market Beli</h5>
-    <table class="ui celled striped table">
+    <table class="ui celled striped table compact striped">
       <thead>
         <tr>
           <th>Harga</th>
@@ -403,7 +463,12 @@ $(document).ready(function () {
       document.getElementById('PoloniexAsk').innerHTML = convertToRupiah(Math.floor(data.BTC_LTC.lowestAsk*btcPrice));
     });
 
-    $.getJSON('libs/funcLtc.php', function(data){
+    $.getJSON('libs/hitbtc.php?i=LTC', function(data){
+      document.getElementById('Hitbtc').innerHTML = convertToRupiah(Math.floor(data.hitbtc*btcPrice));
+      document.getElementById('HitbtcAsk').innerHTML = convertToRupiah(Math.floor(data.hitbtcask*btcPrice));
+      document.getElementById('HitbtcBid').innerHTML = convertToRupiah(Math.floor(data.hitbtcbid*btcPrice));
+    });
+    $.getJSON('libs/bittrex.php?i=ltc', function(data){
       document.getElementById('BittrexLast').innerHTML = convertToRupiah(Math.floor(data.Bittrex*btcPrice));
       document.getElementById('BittrexBid').innerHTML = convertToRupiah(Math.floor(data.BittrexBid*btcPrice));
       document.getElementById('BittrexAsk').innerHTML = convertToRupiah(Math.floor(data.BittrexAsk*btcPrice));
@@ -423,6 +488,20 @@ $(document).ready(function () {
   function depth(){
     var totalbuy = 0;
     var totalsell = 0;
+
+    $.getJSON('https://vip.bitcoin.co.id/api/ltc_idr/trades', function(data){
+      $.each(data, function(i,val){
+        if(i > 4){
+          return false;
+        }
+
+          document.getElementById('mw' + i).innerHTML = new Date(val.date*1000).toLocaleString([], {hour: '2-digit', minute:'2-digit'});
+          document.getElementById('mj' + i).innerHTML = val.type;
+          document.getElementById('mh' + i).innerHTML = convertToRupiah(val.price);
+          document.getElementById('mv' + i).innerHTML = val.amount;
+          document.getElementById('mp' + i).innerHTML = convertToRupiah(Math.round(val.price*val.amount));
+        });
+      });
 
     $.getJSON('https://vip.bitcoin.co.id/api/ltc_idr/depth', function(data){  
 

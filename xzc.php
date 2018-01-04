@@ -52,11 +52,15 @@
 
   <div class="ui main container">
     <div class="ui secondary  menu">
-      <a href="/" class="item" id="priceLastmenubtc">BTC</a>
+      <a href="/" class="item" id="priceLastmenubtc">HOME</a>
+      <a href="btc.php" class="item" id="priceLastmenubtc">BTC</a>
       <a href="bch.php" class="item" id="priceLastmenubch">BCH</a>
+      <a href="btg.php" class="item" id="priceLastmenubch">BTG</a>
       <a href="eth.php" class="item" id="priceLastmenueth">ETH</a>
       <a href="etc.php" class="item" id="priceLastmenuetc">ETC</a>
+      <a href="ignis.php" class="item" id="priceLastmenubch">IGNIS</a>
       <a href="ltc.php" class="item" id="priceLastmenultc">LTC</a>
+      <a href="nxt.php" class="item" id="priceLastmenultc">NXT</a>
       <a href="waves.php" class="item" id="priceLastmenuwaves">WAVES</a>
       <a href="xlm.php" class="item" id="priceLastmenuxlm">XLM</a>
       <a href="xrp.php" class="item" id="priceLastmenuxrp">XRP</a>
@@ -66,7 +70,7 @@
 
 <center>
   <h3>Volume XZC</h3>
-<table class="ui celled padded table">
+<table class="ui celled padded table compact striped">
   <thead>
   <tr>
     <th width="20%">Total Sell</th>
@@ -88,7 +92,7 @@
 <br>
 
 <h3>Price XZC</h3>
-<table class="ui celled padded table">
+<table class="ui celled padded table compact striped">
   <thead>
   <tr>
     <th width="16%">Market</th>
@@ -108,33 +112,33 @@
     <td id="priceTodayLow">0</td>
   </tr>
     <tr>
-    <td>Bitrex</td>
+    <td>Bittrex</td>
     <td id="BittrexLast">0</td>
     <td id="BittrexAsk">0</td>
     <td id="BittrexBid">0</td>
     <td id="">0</td>
     <td id="">0</td>
   </tr>
-   <tr>
+<!--    <tr>
     <td>Poloniex</td>
     <td id="PoloniexLast">0</td>
     <td id="PoloniexAsk">0</td>
     <td id="PoloniexBid">0</td>
     <td id="">0</td>
     <td id="">0</td>
-  </tr>
+  </tr> -->
 </table>
 <br>
 
 
 <h3>Aktivitas Market</h3>
-<table class="ui celled padded table">
+<table class="ui celled padded table compact striped">
   <thead>
-    <th>Waktu</th>
-    <th>Jenis</th>
-    <th>Harga</th>
-    <th>Volume</th>
-    <th>IDR</th>
+    <th width="20%">Waktu</th>
+    <th width="20%">Jenis</th>
+    <th width="20%">Harga</th>
+    <th width="20%">Volume</th>
+    <th width="20%">IDR</th>
   </thead>
   <tr>
     <td id="mw0">0</td>
@@ -186,7 +190,7 @@
 <div class="ui grid">
   <div class="eight wide column">
     <h5>Market Jual</h5>
-    <table class="ui celled striped table">
+    <table class="ui celled striped table compact striped">
       <thead>
         <tr>
           <th>Harga</th>
@@ -303,7 +307,7 @@
   </div>
   <div class="eight wide column">
     <h5>Market Beli</h5>
-    <table class="ui celled striped table">
+    <table class="ui celled striped table compact striped">
       <thead>
         <tr>
           <th>Harga</th>
@@ -462,7 +466,7 @@ $(document).ready(function () {
     });
 
 
-    $.getJSON('libs/funcXzc.php', function(data){
+    $.getJSON('libs/bittrex.php?i=XZC', function(data){
       document.getElementById('BittrexLast').innerHTML = convertToRupiah(Math.floor(data.Bittrex*btcPrice));
       document.getElementById('BittrexBid').innerHTML = convertToRupiah(Math.floor(data.BittrexBid*btcPrice));
       document.getElementById('BittrexAsk').innerHTML = convertToRupiah(Math.floor(data.BittrexAsk*btcPrice));
